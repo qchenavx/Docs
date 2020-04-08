@@ -21,7 +21,7 @@ Overview
 Aviatrix Controller HA in AWS leverages an auto scaling group and a Lambda function to perform monitoring the health of the current Controller, 
 launching a new controller and restoring the configuration when the active controller instance become unreachable.
 
-When a new controller is launched, the existing controller is terminated and its EIP is associated to the newly launched controller.  Existing configuration is restored, resulting in a seamless experience when failover happens.
+When a new controller is launched, the existing controller is terminated, its EIP is associated to the newly launched controller, and the private IP is created in the new controller subnet.  Existing configuration is restored, resulting in a seamless experience when failover happens.
 
 Prerequisites
 -------------
@@ -66,9 +66,9 @@ Launch CloudFormation Stack
    | Enter VPC of existing         | Select the VPC in this region where the  |
    | controller instance.          | AVX Controller is installed.             |
    +-------------------------------+------------------------------------------+
-   | Enter one or more subnets in  | Select the subnet where the Controller   |
-   | different Availability zones  | is installed and optionally one          |
-   | within that VPC.              | additional subnet for redundancy.        |
+   | Enter one or more subnets in  | Select another PUBLIC subnet of the VPC. |
+   | different Availability zones  | Optionally one additional subnet for     |
+   | within that VPC.              | redundancy.                              |
    +-------------------------------+------------------------------------------+
    | Enter Name tag of the existing| Enter the **Name** tag for the existing  |
    | Aviatrix Controller instance. | Controller EC2 instance.                 |
